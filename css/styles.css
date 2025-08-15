@@ -1,0 +1,22 @@
+.myfooter {
+  background-color: white;
+  color: red;
+  padding: 20px 0;
+  border-top:1px solid #dde1e6 ;
+  width: 100%;
+}
+
+.myfooter a{
+  color: red;
+  text-decoration: none;
+
+}
+.myfooter a:hover{
+  color: rgb(120, 40, 40);
+
+}
+
+.myfooter .logo{
+  font-size: 2rem;
+  font-weight: bold;
+}
