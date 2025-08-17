@@ -99,3 +99,18 @@
   background-color: #2c3ef0;
 
 }
+.sarita-img{
+  height: 350px;
+  object-fit: cover;
+}
+@media (max-width: 768px) 
+{
+  .sarita-img{
+    height: 150px;
+  }
+}
+.sarita-gallery{
+  text-align: center;
+  color: rgb(56, 128, 190);
+  font-weight: 50;
+}
