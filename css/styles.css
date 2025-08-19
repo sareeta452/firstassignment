@@ -50,11 +50,6 @@
     object-fit: cover; 
   }
 }
-/* .myfooter {
-  padding: 20px 0;
-  border-top:1px solid #dde1e6 ;
-  width: 100%;
-} */
 
 .myfooter a{
   color: #dde1e6;
@@ -113,4 +108,189 @@
   text-align: center;
   color: rgb(56, 128, 190);
   font-weight: 50;
+}
+
+#item {
+  display: grid;
+  gap: 20px;
+}
+
+.item-card {
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #BDBDBD;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 215px 1fr;
+  gap: 95px;
+  margin-left: 30px;
+}
+
+.item-image {
+  width: 300px;
+  margin-top: 10px;
+  height: auto;
+  border-radius: 4px;
+
+}
+
+.item-info {
+  display: grid;
+  align-content: start;
+  gap: 5px;
+}
+
+.item-title {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.item-price {
+  font-weight: 600;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #888;
+  margin-right: 10px;
+}
+
+.discounted-price {
+  color: #E63946;
+}
+
+.item-rating {
+  color: #FF9017;
+  font-size: 14px;
+}
+
+.item-meta {
+  color: #666;
+  font-size: 12px;
+}
+
+.item-description {
+  color: #505050;
+  font-size: 13px;
+  margin: 10px 0;
+}
+
+.view-details {
+  color: #0D6EFD;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+}
+.table,th ,td
+{
+background-color: rgb(203, 188, 188);
+border: 1px solid black;
+border-collapse: collapse;
+}
+input[type=text]
+{
+border:none;
+padding:10px;
+}
+
+
+main {
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+#vendors {
+  margin-top: 30px;
+}
+
+.vendor-list {
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+
+.vendor {
+  margin-bottom: 20px;
+}
+
+.vendor-name {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.vendor-email {
+  color: #666;
+}
+
+.accept-btn {
+  padding: 10px 15px;
+  margin-left: 10px;
+  cursor: pointer;
+  background-color: blue; 
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.reject-btn {
+  padding: 10px 15px;
+  margin-left: 10px;
+  cursor: pointer;
+  background-color: red;
+  color: white; 
+  border: none;
+  border-radius: 4px;
+}
+
+#vendor-products {
+  display: none; 
+}
+main {
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+#vendors {
+    margin-top: 30px;
+}
+
+.vendor-list {
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+.vendor {
+    margin-bottom: 20px;
+}
+
+.vendor-name {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.vendor-email {
+    color: #666;
+}
+
+.accept-btn {
+    padding: 10px 15px;
+    margin-left: 10px;
+    cursor: pointer;
+    background-color: blue; 
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.reject-btn {
+    padding: 10px 15px;
+    margin-left: 10px;
+    cursor: pointer;
+    background-color: red;
+    color: white; 
+    border: none;
+    border-radius: 4px;
+}
+
+#vendor-products {
+    display: none; 
 }
