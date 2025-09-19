@@ -1,155 +1,447 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Sarita Management</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styles.css"> <!-- My own CSS -->
-</head>
-  <div>
-    <nav class="navbar navbar-expand-sm ">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">Sarita</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="mynavbar">
-            <ul class="navbar-nav me-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Collections - Sarita Management</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">Sarita Management</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mynavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mynavbar">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="vendor_gallery.html">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="join_photographer.html"
+                >Join as Photographer</a
+              >
+            </li>
+          </ul>
+
+          <!-- Search Bar -->
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search images..."
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-primary" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </form>
+
+          <div class="d-flex align-items-center">
+            <a href="checkout.html" class="nav-link position-relative">
+              <img src="img/cartimage.svg" alt="PURCHASES" class="cart-image" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mt-4">
+      <h1 class="Saritamanagementgallery">Curated Collections</h1>
+      <p class="text-muted mb-4">
+        Discover handpicked image collections organized by theme and style
+      </p>
+
+      <!-- Filter Container -->
+      <div class="filter-container">
+        <div
+          class="d-flex flex-wrap justify-content-between align-items-center"
+        >
+          <div class="d-flex flex-wrap gap-2 mb-2">
+            <button
+              class="btn btn-outline-primary btn-sm active"
+              onclick="filterByCategory('all')"
+              data-category="all"
+            >
+              All
+            </button>
+            <button
+              class="btn btn-outline-primary btn-sm"
+              onclick="filterByCategory('nature')"
+              data-category="nature"
+            >
+              Nature
+            </button>
+            <button
+              class="btn btn-outline-primary btn-sm"
+              onclick="filterByCategory('travel')"
+              data-category="travel"
+            >
+              Travel
+            </button>
+            <button
+              class="btn btn-outline-primary btn-sm"
+              onclick="filterByCategory('architecture')"
+              data-category="architecture"
+            >
+              Architecture
+            </button>
+            <button
+              class="btn btn-outline-primary btn-sm"
+              onclick="filterByCategory('art')"
+              data-category="art"
+            >
+              Art
+            </button>
+            <button
+              class="btn btn-outline-primary btn-sm"
+              onclick="filterByCategory('technology')"
+              data-category="technology"
+            >
+              Technology
+            </button>
+            <button
+              class="btn btn-outline-primary btn-sm"
+              onclick="filterByCategory('animals')"
+              data-category="animals"
+            >
+              Animals
+            </button>
+          </div>
+          <div class="dropdown">
+            <button
+              class="btn btn-outline-secondary dropdown-toggle btn-sm"
+              type="button"
+              data-bs-toggle="dropdown"
+            >
+              Sort by
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  onclick="sortImages('price-low')"
+                  >Price: Low to High</a
+                >
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="vendor_gallery.html">Gallery</a>
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  onclick="sortImages('price-high')"
+                  >Price: High to Low</a
+                >
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="vendor_management.html">Manage</a>
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  onclick="sortImages('popular')"
+                  >Most Popular</a
+                >
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="item_details.html">Images</a>
+              <li>
+                <a class="dropdown-item" href="#" onclick="sortImages('recent')"
+                  >Most Recent</a
+                >
               </li>
             </ul>
-            <form class="d-flex mx-auto">
-              <input class="form-control me-2 sarita-search-box" type="text" placeholder="Search">
-              <button class="btn btn-primary" type="button">Search</button>
-            </form>
           </div>
-          <a href="#" class="nav-link">
-            <img src="img/signimage.svg" alt="CART" class="cart-image">
-          </a>
-          <!-- checkout icon -->
-          <a href="checkout.html" class="nav-link">
-            <img src="img/cartimage.svg" alt="CART" class="cart-image">
-          </a>
         </div>
-      </nav>
-<!-- Main   -->
-<h1 class="sarita-gallery">Sarita item details page</h1>
-<div id="item">
-  <div class="item-card">
-      <img src="img/1.jpg" alt="Canon Camera" class="item-image">
-      <div class="items-info">
-          <h3 class="item-title">Himal Taal</h3>
-          <div class="item-price">
-              <span class="original-price">$4.00</span>
-              <span class="discounted-price">$2.99</span>
-          </div>
-          <div class="item-rating">★★★★★</div>
-          <div class="item-meta">175 sell </div>
-          <p class="item-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-          <a href="#" class="view-details">View details</a>
       </div>
-  </div>
-  <div class="item-card">
-    <img src="img/2.jpg" alt="Canon Camera" class="item-image">
-    <div class="items-info">
-        <h3 class="item-title">Himal matra</h3>
-        <div class="item-price">
-            <span class="original-price">$3.00</span>
-            <span class="discounted-price">$1.99</span>
+      <!-- Collections Grid -->
+      <div class="row g-4" id="collectionsGrid">
+        <!-- Premium Architecture Collection -->
+        <div class="col-lg-6 col-md-6">
+          <div class="card h-100 collection-card">
+            <div class="collection-preview">
+              <div class="row g-1">
+                <div class="col-6">
+                  <img
+                    src="img/9 (10).jpg"
+                    class="collection-img"
+                    alt="Sydney Opera House"
+                  />
+                </div>
+                <div class="col-6">
+                  <div class="row g-1">
+                    <div class="col-12">
+                      <img
+                        src="img/9 (2).jpg"
+                        class="collection-img collection-img-small"
+                        alt="Harbour Bridge"
+                      />
+                    </div>
+                    <div class="col-12">
+                      <img
+                        src="img/9 (6).jpg"
+                        class="collection-img collection-img-small"
+                        alt="Melbourne"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Architecture Masterpieces</h5>
+              <p class="card-text text-muted">
+                Iconic buildings and architectural wonders from around the world
+              </p>
+              <div class="collection-stats">
+                <span class="badge bg-primary me-2">8 Images</span>
+                <span class="text-success fw-bold">From $1.99</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a
+                href="vendor_gallery.html?category=architecture"
+                class="btn btn-primary w-100"
+                >View Collection</a
+              >
+            </div>
+          </div>
         </div>
-        <div class="item-rating">★★★★★</div>
-        <div class="item-meta">321 sell </div>
-        
-        <p class="item-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-        <a href="#" class="view-details">View details</a>
+
+        <!-- Nature & Wildlife Collection -->
+        <div class="col-lg-6 col-md-6">
+          <div class="card h-100 collection-card">
+            <div class="collection-preview">
+              <div class="row g-1">
+                <div class="col-6">
+                  <img
+                    src="img/nature.jpg"
+                    class="collection-img"
+                    alt="Natural Landscape"
+                  />
+                </div>
+                <div class="col-6">
+                  <div class="row g-1">
+                    <div class="col-12">
+                      <img
+                        src="img/9 (11).jpg"
+                        class="collection-img collection-img-small"
+                        alt="Ocean"
+                      />
+                    </div>
+                    <div class="col-12">
+                      <img
+                        src="img/9 (9).jpg"
+                        class="collection-img collection-img-small"
+                        alt="Bird"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Nature & Wildlife</h5>
+              <p class="card-text text-muted">
+                Stunning natural landscapes and wildlife photography
+              </p>
+              <div class="collection-stats">
+                <span class="badge bg-success me-2">6 Images</span>
+                <span class="text-success fw-bold">From $2.99</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a
+                href="vendor_gallery.html?category=nature"
+                class="btn btn-primary w-100"
+                >View Collection</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Travel & Adventure Collection -->
+        <div class="col-lg-6 col-md-6">
+          <div class="card h-100 collection-card">
+            <div class="collection-preview">
+              <div class="row g-1">
+                <div class="col-6">
+                  <img
+                    src="img/9 (1).jpg"
+                    class="collection-img"
+                    alt="Gold Coast"
+                  />
+                </div>
+                <div class="col-6">
+                  <div class="row g-1">
+                    <div class="col-12">
+                      <img
+                        src="img/9 (3).jpg"
+                        class="collection-img collection-img-small"
+                        alt="City Night"
+                      />
+                    </div>
+                    <div class="col-12">
+                      <img
+                        src="img/9 (7).jpg"
+                        class="collection-img collection-img-small"
+                        alt="Urban Street"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Travel & Urban Life</h5>
+              <p class="card-text text-muted">
+                Explore cities, cultures, and travel destinations
+              </p>
+              <div class="collection-stats">
+                <span class="badge bg-info me-2">5 Images</span>
+                <span class="text-success fw-bold">From $1.99</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a
+                href="vendor_gallery.html?category=travel"
+                class="btn btn-primary w-100"
+                >View Collection</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Art & Creative Collection -->
+        <div class="col-lg-6 col-md-6">
+          <div class="card h-100 collection-card">
+            <div class="collection-preview">
+              <div class="row g-1">
+                <div class="col-6">
+                  <img
+                    src="img/art.jpg"
+                    class="collection-img"
+                    alt="Creative Art"
+                  />
+                </div>
+                <div class="col-6">
+                  <div class="row g-1">
+                    <div class="col-12">
+                      <img
+                        src="img/ganesh (1).jpg"
+                        class="collection-img collection-img-small"
+                        alt="Ganesh Art"
+                      />
+                    </div>
+                    <div class="col-12">
+                      <img
+                        src="img/technology.jpg"
+                        class="collection-img collection-img-small"
+                        alt="Tech Art"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Art & Technology</h5>
+              <p class="card-text text-muted">
+                Creative artwork, digital art, and technology-inspired visuals
+              </p>
+              <div class="collection-stats">
+                <span class="badge bg-warning me-2">5 Images</span>
+                <span class="text-success fw-bold">From $4.99</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a
+                href="vendor_gallery.html?category=art"
+                class="btn btn-primary w-100"
+                >View Collection</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
-<div class="item-card">
-  <img src="img/3.jpg" alt="Canon Camera" class="item-image">
-  <div class="items-info">
-      <h3 class="item-title">Chitwan Hatti</h3>
-      <div class="item-price">
-          <span class="original-price">$6.00</span>
-          <span class="discounted-price">$2.99</span>
-      </div>
-      <div class="item-rating">★★★★★</div>
-      <div class="item-meta">15 sell </div>
-      
-      <p class="item-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-      <a href="#" class="view-details">View details</a>
-  </div>
-</div>
-<div class="item-card">
-  <img src="img/4.jpg" alt="Canon Camera" class="item-image">
-  <div class="items-info">
-      <h3 class="item-title">fool kukur</h3>
-      <div class="item-price">
-          <span class="original-price">$4.00</span>
-          <span class="discounted-price">$1.99</span>
-      </div>
-      <div class="item-rating">★★★★★</div>
-      <div class="item-meta">58 sell </div>
-      
-      <p class="item-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-      <a href="#" class="view-details">View details</a>
-  </div>
-</div>
-<div class="item-card">
-  <img src="img/5.jpg" alt="Canon Camera" class="item-image">
-  <div class="items-info">
-      <h3 class="item-title">Paint Hai</h3>
-      <div class="item-price">
-          <span class="original-price">$8.00</span>
-          <span class="discounted-price">$5.99</span>
-      </div>
-      <div class="item-rating">★★★★★</div>
-      <div class="item-meta">154 sell orders </div>
-      
-      <p class="item-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-      <a href="#" class="view-details">View details</a>
-  </div>
-</div>
-<div class="item-card">
-  <img src="img/6.jpg" alt="Canon Camera" class="item-image">
-  <div class="items-info">
-      <h3 class="item-title">cycle ma didi vai </h3>
-      <div class="item-price">
-          <span class="original-price">$5.00</span>
-          <span class="discounted-price">$3.99</span>
-      </div>
-      <div class="item-rating">★★★★★</div>
-      <div class="item-meta">177 sell </div>
-      
-      <p class="item-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-      <a href="#" class="view-details">View details</a>
-  </div>
-</div>
-</div>
 
-</div>
-<!-- my footer -->
-<footer class="myfooter border-top py-4">
-  <div class="container d-flex flex-wrap  align-items-center justify-content-between">
-    <p class="col-md-4 mb-0">2025 Sarita Management</p>
+    <footer class="myfooter">
+      <div class="container">
+        <div
+          class="d-flex flex-wrap align-items-center justify-content-between"
+        >
+          <p class="mb-0">© 2025 Sarita Management Photography</p>
+          <ul class="nav">
+            <li class="nav-item">
+              <a href="index.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="vendor_gallery.html" class="nav-link">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a href="checkout.html" class="nav-link">Purchases</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Simple collections filtering
+      function filterByCategory(category) {
+        const collections = document.querySelectorAll("#collectionsGrid > div");
 
-    <ul class="nav col-md-4 justify-content-end">
-      <li class="nav-item"><a href="index.html" class="nav-link px-2">Home</a></li>
-      <li class="nav-item"><a href="vendor_gallery.html" class="nav-link px-2">Gallery</a></li>
-      <li class="nav-item"><a href="checkout.html" class="nav-link px-2">Checkout</a></li>
-    </ul>
-    
-  </div>
-</footer>
-</body>
+        // Update filter buttons
+        document.querySelectorAll("[data-category]").forEach((btn) => {
+          btn.classList.remove("active", "btn-primary");
+          btn.classList.add("btn-outline-primary");
+        });
+        document
+          .querySelector(`[data-category="${category}"]`)
+          .classList.add("active", "btn-primary");
+        document
+          .querySelector(`[data-category="${category}"]`)
+          .classList.remove("btn-outline-primary");
+
+        // Show/hide collections based on category
+        collections.forEach((collection) => {
+          if (category === "all") {
+            collection.style.display = "";
+          } else {
+            const collectionTitle = collection
+              .querySelector(".card-title")
+              .textContent.toLowerCase();
+            if (
+              collectionTitle.includes(category) ||
+              (category === "architecture" &&
+                collectionTitle.includes("architecture")) ||
+              (category === "nature" && collectionTitle.includes("nature")) ||
+              (category === "travel" && collectionTitle.includes("travel")) ||
+              (category === "art" && collectionTitle.includes("art"))
+            ) {
+              collection.style.display = "";
+            } else {
+              collection.style.display = "none";
+            }
+          }
+        });
+      }
+    </script>
+  </body>
 </html>

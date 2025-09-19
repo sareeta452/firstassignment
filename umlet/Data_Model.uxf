@@ -1,0 +1,167 @@
+<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><element><id>UMLClass</id><coordinates><x>96</x><y>60</y><w>240</w><h>200</h></coordinates><panel_attributes>Users
+--
+PK: user_id: VARCHAR(36)
+    first_name: VARCHAR(100) NOT NULL
+    last_name: VARCHAR(100) NOT NULL
+    email: VARCHAR(255) NOT NULL UNIQUE
+    password_hash: VARCHAR(255) NOT NULL
+    country: VARCHAR(100)
+    city: VARCHAR(100)
+    phone: VARCHAR(20)
+    registration_date: TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    membership_type: ENUM('FREE','PREMIUM') DEFAULT 'FREE'
+    is_active: BOOLEAN DEFAULT TRUE
+    created_at: TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at: TIMESTAMP DEFAULT CURRENT_TIMESTAMP</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>416</x><y>60</y><w>280</w><h>240</h></coordinates><panel_attributes>Photographers
+--
+PK: photographer_id: VARCHAR(36)
+FK: user_id: VARCHAR(36)
+    specialty: ENUM('LANDSCAPE','PORTRAIT','WILDLIFE',
+                   'ARCHITECTURE','STREET','MACRO',
+                   'TRAVEL','COMMERCIAL')
+    experience_level: ENUM('BEGINNER','INTERMEDIATE',
+                          'EXPERIENCED','PROFESSIONAL')
+    bio: TEXT
+    portfolio_url: VARCHAR(500)
+    instagram_handle: VARCHAR(100)
+    primary_camera: VARCHAR(200)
+    favorite_lens: VARCHAR(200)
+    approval_status: ENUM('PENDING','APPROVED',
+                         'REJECTED') DEFAULT 'PENDING'
+    application_date: TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    approved_date: TIMESTAMP NULL
+    revenue_share_rate: DECIMAL(5,2) DEFAULT 80.00
+    total_earnings: DECIMAL(10,2) DEFAULT 0.00
+    created_at: TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at: TIMESTAMP DEFAULT CURRENT_TIMESTAMP</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>776</x><y>60</y><w>280</w><h>240</h></coordinates><panel_attributes>Categories
+--
+PK: category_id: VARCHAR(36)
+    category_name: VARCHAR(100) NOT NULL UNIQUE
+    description: TEXT
+    image_count: INT DEFAULT 0
+    display_order: INT DEFAULT 0
+    is_active: BOOLEAN DEFAULT TRUE
+    created_at: TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at: TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+INDEXES:
+    idx_category_name ON category_name
+    idx_active_categories ON is_active, display_order</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>416</x><y>380</y><w>320</w><h>280</h></coordinates><panel_attributes>Images
+--
+PK: image_id: VARCHAR(36)
+FK: photographer_id: VARCHAR(36)
+FK: category_id: VARCHAR(36)
+    title: VARCHAR(200) NOT NULL
+    description: TEXT
+    file_path: VARCHAR(500) NOT NULL
+    thumbnail_path: VARCHAR(500)
+    original_price: DECIMAL(8,2) NOT NULL
+    current_price: DECIMAL(8,2) NOT NULL
+    discount_percentage: DECIMAL(5,2) DEFAULT 0.00
+    upload_date: TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    download_count: INT DEFAULT 0
+    total_revenue: DECIMAL(10,2) DEFAULT 0.00
+    status: ENUM('DRAFT','PENDING','APPROVED',
+                'REJECTED','INACTIVE') DEFAULT 'PENDING'
+    tags: JSON
+    resolution_width: INT
+    resolution_height: INT
+    file_size_mb: DECIMAL(8,2)
+    file_format: VARCHAR(10)
+    is_featured: BOOLEAN DEFAULT FALSE
+    featured_until: TIMESTAMP NULL
+    created_at: TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at: TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+INDEXES:
+    idx_photographer_images ON photographer_id
+    idx_category_images ON category_id
+    idx_image_status ON status
+    idx_featured_images ON is_featured, featured_until</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>96</x><y>380</y><w>280</w><h>200</h></coordinates><panel_attributes>Orders
+--
+PK: order_id: VARCHAR(36)
+FK: user_id: VARCHAR(36)
+    order_date: TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    total_amount: DECIMAL(10,2) NOT NULL
+    payment_status: ENUM('PENDING','COMPLETED',
+                        'FAILED','REFUNDED') DEFAULT 'PENDING'
+    payment_method: ENUM('CREDIT_CARD','DEBIT_CARD',
+                        'PAYPAL','STRIPE') NOT NULL
+    billing_address: JSON
+    transaction_id: VARCHAR(100)
+    created_at: TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at: TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+INDEXES:
+    idx_user_orders ON user_id, order_date DESC
+    idx_order_status ON payment_status</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>96</x><y>700</y><w>280</w><h>160</h></coordinates><panel_attributes>Order_Items
+--
+PK: order_item_id: VARCHAR(36)
+FK: order_id: VARCHAR(36)
+FK: image_id: VARCHAR(36)
+    purchase_price: DECIMAL(8,2) NOT NULL
+    download_link: VARCHAR(500)
+    download_count: INT DEFAULT 0
+    max_downloads: INT DEFAULT 5
+    expiry_date: TIMESTAMP
+    created_at: TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+INDEXES:
+    idx_order_items ON order_id
+    idx_image_purchases ON image_id</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>776</x><y>380</y><w>280</w><h>180</h></coordinates><panel_attributes>Collections
+--
+PK: collection_id: VARCHAR(36)
+FK: category_id: VARCHAR(36)
+    collection_name: VARCHAR(200) NOT NULL
+    description: TEXT
+    image_count: INT DEFAULT 0
+    min_price: DECIMAL(8,2)
+    max_price: DECIMAL(8,2)
+    is_featured: BOOLEAN DEFAULT FALSE
+    display_order: INT DEFAULT 0
+    created_at: TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at: TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+INDEXES:
+    idx_category_collections ON category_id
+    idx_featured_collections ON is_featured, display_order</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>776</x><y>700</y><w>240</w><h>120</h></coordinates><panel_attributes>Collection_Images
+--
+PK: collection_image_id: VARCHAR(36)
+FK: collection_id: VARCHAR(36)
+FK: image_id: VARCHAR(36)
+    display_order: INT DEFAULT 0
+    added_date: TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+INDEXES:
+    idx_collection_images ON collection_id
+    idx_image_collections ON image_id
+    UNIQUE(collection_id, image_id)</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>328</x><y>140</y><w>104</w><h>40</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..1
+has</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element><element><id>Relation</id><coordinates><x>576</x><y>292</y><w>56</w><h>104</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..*
+uploads</panel_attributes><additional_attributes>10;10;10;110</additional_attributes></element><element><id>Relation</id><coordinates><x>776</x><y>292</y><w>88</w><h>144</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..*
+contains</panel_attributes><additional_attributes>80;10;80;80;10;80;10;160</additional_attributes></element><element><id>Relation</id><coordinates><x>916</x><y>292</y><w>64</w><h>104</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..*
+organizes</panel_attributes><additional_attributes>10;10;10;110</additional_attributes></element><element><id>Relation</id><coordinates><x>216</x><y>252</y><w>48</w><h>144</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..*
+places</panel_attributes><additional_attributes>10;10;10;160</additional_attributes></element><element><id>Relation</id><coordinates><x>236</x><y>572</y><w>64</w><h>144</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=1..*
+contains</panel_attributes><additional_attributes>10;10;10;160</additional_attributes></element><element><id>Relation</id><coordinates><x>368</x><y>660</y><w>120</w><h>96</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..*
+purchased_as</panel_attributes><additional_attributes>120;10;120;80;10;80;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>896</x><y>552</y><w>56</w><h>160</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..*
+groups</panel_attributes><additional_attributes>10;10;10;180</additional_attributes></element><element><id>Relation</id><coordinates><x>656</x><y>652</y><w>152</w><h>96</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..*
+included_in</panel_attributes><additional_attributes>10;10;10;80;150;80;150;100</additional_attributes></element><element><id>UMLNote</id><coordinates><x>416</x><y>0</y><w>320</w><h>40</h></coordinates><panel_attributes>Sarita Management Photography Platform
+Logical Data Model (MySQL/PostgreSQL)
+bg=lightblue</panel_attributes><additional_attributes></additional_attributes></element></diagram>

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Join as Photographer - Sarita Management</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">Sarita Management</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mynavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mynavbar">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="vendor_gallery.html">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="join_photographer.html"
+                >Join as Photographer</a
+              >
+            </li>
+          </ul>
+
+          <!-- Search Bar -->
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search images..."
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-primary" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </form>
+
+          <div class="d-flex align-items-center">
+            <a href="checkout.html" class="nav-link position-relative">
+              <img src="img/cartimage.svg" alt="PURCHASES" class="cart-image" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-black py-5">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <h1 class="display-4 fw-bold mb-4">
+              Join Our Photography Community
+            </h1>
+            <p class="lead mb-4">
+              Share your passion for photography with the world. Upload your
+              stunning images and earn from your creative work.
+            </p>
+            <div class="row g-3 mb-4">
+              <div class="col-sm-4 text-center">
+                <div class="display-6 fw-bold">80%</div>
+                <small>Revenue Share</small>
+              </div>
+              <div class="col-sm-4 text-center">
+                <div class="display-6 fw-bold">10K+</div>
+                <small>Monthly Downloads</small>
+              </div>
+              <div class="col-sm-4 text-center">
+                <div class="display-6 fw-bold">24/7</div>
+                <small>Support</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <img
+              src="img/9 (10).jpg"
+              alt="Photography"
+              class="img-fluid rounded shadow"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Application Form -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="card shadow">
+              <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">
+                  <i class="fas fa-camera me-2"></i>Photographer Application
+                </h3>
+              </div>
+              <div class="card-body p-4">
+                <form>
+                  <!-- Personal Information -->
+                  <div class="row g-3 mb-4">
+                    <div class="col-12">
+                      <h5 class="text-primary mb-3">
+                        <i class="fas fa-user me-2"></i>Personal Information
+                      </h5>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="firstName" class="form-label"
+                        >First Name *</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="firstName"
+                        value="John"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="lastName" class="form-label"
+                        >Last Name *</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="lastName"
+                        value="Smith"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="email" class="form-label"
+                        >Email Address *</label
+                      >
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        value="john.smith@email.com"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="phone" class="form-label">Phone Number</label>
+                      <input
+                        type="tel"
+                        class="form-control"
+                        id="phone"
+                        value="+1 (555) 123-4567"
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="country" class="form-label">Country *</label>
+                      <select class="form-select" id="country" required>
+                        <option value="">Choose...</option>
+                        <option value="US" selected>United States</option>
+                        <option value="CA">Canada</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="AU">Australia</option>
+                        <option value="DE">Germany</option>
+                        <option value="FR">France</option>
+                        <option value="JP">Japan</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="city" class="form-label">City</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="city"
+                        value="New York"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Photography Experience -->
+                  <div class="row g-3 mb-4">
+                    <div class="col-12">
+                      <h5 class="text-primary mb-3">
+                        <i class="fas fa-camera-retro me-2"></i>Photography
+                        Experience
+                      </h5>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="specialty" class="form-label"
+                        >Primary Specialty *</label
+                      >
+                      <select class="form-select" id="specialty" required>
+                        <option value="">Choose...</option>
+                        <option value="landscape" selected>
+                          Landscape Photography
+                        </option>
+                        <option value="portrait">Portrait Photography</option>
+                        <option value="wildlife">Wildlife Photography</option>
+                        <option value="architecture">Architecture</option>
+                        <option value="street">Street Photography</option>
+                        <option value="macro">Macro Photography</option>
+                        <option value="travel">Travel Photography</option>
+                        <option value="commercial">
+                          Commercial Photography
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="experience" class="form-label"
+                        >Years of Experience</label
+                      >
+                      <select class="form-select" id="experience">
+                        <option value="">Choose...</option>
+                        <option value="beginner">Less than 1 year</option>
+                        <option value="intermediate">1-3 years</option>
+                        <option value="experienced" selected>3-7 years</option>
+                        <option value="professional">7+ years</option>
+                      </select>
+                    </div>
+                    <div class="col-12">
+                      <label for="bio" class="form-label"
+                        >Professional Bio</label
+                      >
+                      <textarea
+                        class="form-control"
+                        id="bio"
+                        rows="4"
+                        placeholder="Tell us about your photography journey, style, and what inspires you..."
+                      >
+Passionate landscape photographer with 5+ years of experience capturing the beauty of natural environments. Specializing in golden hour and blue hour photography, I focus on creating images that evoke emotion and showcase the raw beauty of our planet. My work has been featured in several online publications and local galleries.</textarea
+                      >
+                    </div>
+                  </div>
+
+                  <!-- Portfolio & Equipment -->
+                  <div class="row g-3 mb-4">
+                    <div class="col-12">
+                      <h5 class="text-primary mb-3">
+                        <i class="fas fa-images me-2"></i>Portfolio & Equipment
+                      </h5>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="website" class="form-label"
+                        >Portfolio Website</label
+                      >
+                      <input
+                        type="url"
+                        class="form-control"
+                        id="website"
+                        value="https://johnsmithphotography.com"
+                        placeholder="https://yourportfolio.com"
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="instagram" class="form-label"
+                        >Instagram Handle</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="instagram"
+                        value="@johnsmith_photo"
+                        placeholder="@yourusername"
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="camera" class="form-label"
+                        >Primary Camera</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="camera"
+                        value="Canon EOS R5"
+                        placeholder="e.g., Canon EOS R5, Nikon D850"
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="lens" class="form-label">Favorite Lens</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="lens"
+                        value="Canon RF 24-70mm f/2.8"
+                        placeholder="e.g., 24-70mm f/2.8"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Sample Work -->
+                  <div class="mb-4">
+                    <h5 class="text-primary mb-3">
+                      <i class="fas fa-star me-2"></i>Sample Work
+                    </h5>
+                    <div class="row g-3">
+                      <div class="col-md-4">
+                        <div class="card">
+                          <img
+                            src="img/nature.jpg"
+                            class="card-img-top"
+                            alt="Sample 1"
+                            style="height: 200px; object-fit: cover"
+                          />
+                          <div class="card-body p-2">
+                            <small class="text-muted">Mountain Landscape</small>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="card">
+                          <img
+                            src="img/9 (11).jpg"
+                            class="card-img-top"
+                            alt="Sample 2"
+                            style="height: 200px; object-fit: cover"
+                          />
+                          <div class="card-body p-2">
+                            <small class="text-muted"
+                              >Coastal Photography</small
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="card">
+                          <img
+                            src="img/9 (4).jpg"
+                            class="card-img-top"
+                            alt="Sample 3"
+                            style="height: 200px; object-fit: cover"
+                          />
+                          <div class="card-body p-2">
+                            <small class="text-muted">Nature Details</small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Agreement -->
+                  <div class="mb-4">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="terms"
+                        checked
+                      />
+                      <label class="form-check-label" for="terms">
+                        I agree to the
+                        <a href="#" class="text-primary">Terms of Service</a>
+                        and
+                        <a href="#" class="text-primary"
+                          >Community Guidelines</a
+                        >
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="newsletter"
+                        checked
+                      />
+                      <label class="form-check-label" for="newsletter">
+                        Subscribe to our newsletter for photography tips and
+                        platform updates
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                      <i class="fas fa-paper-plane me-2"></i>Submit Application
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="bg-light py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center mb-5">
+            <h2>Why Join Sarita Management?</h2>
+            <p class="text-muted">
+              Join thousands of photographers who trust us with their creative
+              work
+            </p>
+          </div>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4 text-center">
+            <div class="feature-icon mx-auto mb-3">
+              <i class="fas fa-dollar-sign fa-2x text-success"></i>
+            </div>
+            <h5>Competitive Revenue Share</h5>
+            <p class="text-muted">
+              Earn up to 80% on every download with our industry-leading revenue
+              sharing model.
+            </p>
+          </div>
+          <div class="col-md-4 text-center">
+            <div class="feature-icon mx-auto mb-3">
+              <i class="fas fa-globe fa-2x text-primary"></i>
+            </div>
+            <h5>Global Reach</h5>
+            <p class="text-muted">
+              Your photos will be seen by millions of creative professionals
+              worldwide.
+            </p>
+          </div>
+          <div class="col-md-4 text-center">
+            <div class="feature-icon mx-auto mb-3">
+              <i class="fas fa-shield-alt fa-2x text-warning"></i>
+            </div>
+            <h5>Copyright Protection</h5>
+            <p class="text-muted">
+              We protect your intellectual property with advanced watermarking
+              and licensing.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="myfooter border-top py-4">
+      <div
+        class="container d-flex flex-wrap align-items-center justify-content-between"
+      >
+        <p class="col-md-4 mb-0">© 2025 Sarita Management Photography</p>
+        <ul class="nav col-md-4 justify-content-end">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link px-2">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="vendor_gallery.html" class="nav-link px-2">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a href="checkout.html" class="nav-link px-2">Purchases</a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

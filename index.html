@@ -3,99 +3,308 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Sarita Management</title>
+    <title>Sarita Management - Premium Photography Platform</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styles.css"> <!-- My own CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css"> 
 </head>
   <body>
-    <!-- My content here -->
-    <!-- <h1>Hello, world!</h1> -->
-    <!-- This is my navbar -->
+   
     <nav class="navbar navbar-expand-sm ">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">Sarita</a>
+          <a class="navbar-brand" href="index.html">Sarita Management</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link active" href="index.html">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="vendor_gallery.html">Gallery</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="vendor_management.html">Manage</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="item_details.html">Images</a>
+                <a class="nav-link" href="join_photographer.html">Join as Photographer</a>
               </li>
             </ul>
-            <!-- Filter Button
             
-              <div class="filterbtn">
-                  <button>All</button>
-                  <button>Nature</button>
-                  <button>Park</button>
-                  <button><i class="fa-regular fa-heart"></i></button>
-              </div> -->
-            
-            <form class="d-flex mx-auto">
-              <input class="form-control me-2 sarita-search-box" type="text" placeholder="Search">
-              <button class="btn btn-primary" type="button">Search</button>
+            <!-- Search Bar -->
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search images..." aria-label="Search">
+              <button class="btn btn-outline-primary" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
             </form>
+
+            <div class="d-flex align-items-center">
+            <a href="checkout.html" class="nav-link position-relative">
+              <img src="img/cartimage.svg" alt="PURCHASES" class="cart-image" />
+            </a>
           </div>
-          <a href="#" class="nav-link">
-            <img src="img/signimage.svg" alt="CART" class="cart-image">
-          </a>
-          <!-- checkout icon -->
-          <a href="checkout.html" class="nav-link">
-            <img src="img/cartimage.svg" alt="CART" class="cart-image">
-          </a>
+            
+          </div>
         </div>
       </nav>
-      <!-- This is my banner section -->
-      <!-- <div class="mt-4 p-5 bg-primary text-white rounded">
-        <h1>Your Vision, Our Commitment</h1>
-        <p>We work hand in hand with you to turn ideas into reality and move forward together toward success.</p>
-      </div> -->
-      <section class="banner-section">
-        <img src="img/banner.jpg" alt="Promotional Banner Image" class="banner-image">
-    </section>
+
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="hero-content">
+          <div class="container">
+            <div class="row align-items-center min-vh-50">
+              <div class="col-lg-6">
+                <h1 class="hero-title">Capture Moments, Share Stories</h1>
+                <p class="hero-subtitle">Discover stunning photography from talented artists around the world. Download high-quality images for your creative projects or join our community as a photographer.</p>
+                <div class="hero-stats">
+                  <div class="row text-center">
+                    <div class="col-4">
+                      <div class="stat-number">5000+</div>
+                      <div class="stat-label">Photos</div>
+                    </div>
+                    <div class="col-4">
+                      <div class="stat-number">150+</div>
+                      <div class="stat-label">Photographers</div>
+                    </div>
+                    <div class="col-4">
+                      <div class="stat-number">12</div>
+                      <div class="stat-label">Categories</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="hero-buttons mt-4">
+                  <a href="vendor_gallery.html" class="btn btn-primary btn-lg me-3">Explore Gallery</a>
+                  <a href="join_photographer.html" class="btn btn-outline-primary btn-lg">Join as Photographer</a>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="hero-image">
+                  <img src="img/9 (10).jpg" alt="Featured Image" class="img-fluid rounded shadow">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Images Section -->
+      <section class="featured-section py-5">
+        <div class="container">
+          <h2 class="text-center mb-4">Featured Images</h2>
+          <p class="text-center text-muted mb-5">Hand-picked premium images from our top photographers</p>
+          
+          <div class="row g-4" id="featuredImages">
+            <div class="col-lg-4 col-md-6">
+              <div class="card h-100 featured-card">
+                <img src="img/9 (10).jpg" class="card-img-top" alt="Sydney Opera House">
+                <div class="card-body">
+                  <h5 class="card-title">Sydney Opera House</h5>
+                  <p class="card-text text-muted small">by Robert Johnson</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="price-display">$2.99</span>
+                    <span class="badge bg-primary">Architecture</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <a href="vendor_gallery.html" class="btn btn-primary btn-sm w-100">
+                    <i class="fas fa-eye me-1"></i>View in Gallery
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <div class="card h-100 featured-card">
+                <img src="img/9 (1).jpg" class="card-img-top" alt="Gold Coast Skyline">
+                <div class="card-body">
+                  <h5 class="card-title">Gold Coast Skyline</h5>
+                  <p class="card-text text-muted small">by Shyam Sharma</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="price-display">$1.99</span>
+                    <span class="badge bg-info">Travel</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <a href="vendor_gallery.html" class="btn btn-primary btn-sm w-100">
+                    <i class="fas fa-eye me-1"></i>View in Gallery
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <div class="card h-100 featured-card">
+                <img src="img/nature.jpg" class="card-img-top" alt="Natural Landscape">
+                <div class="card-body">
+                  <h5 class="card-title">Natural Landscape</h5>
+                  <p class="card-text text-muted small">by Shyam Sharma</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="price-display">$4.99</span>
+                    <span class="badge bg-success">Nature</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <a href="vendor_gallery.html" class="btn btn-primary btn-sm w-100">
+                    <i class="fas fa-eye me-1"></i>View in Gallery
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-      <div class="col">
-        <div class="card">
-          <img src="img/4.jpg" class="sarita-img" alt="sarita">
-          <div class="card-body">
-            <h5 class="card-title">Nature</h5>
-            <p class="card-text"></p>
+      <!-- Categories Section -->
+      <section class="categories-section py-5 bg-light">
+        <div class="container">
+          <div class="row mb-4">
+            <div class="col-12">
+              <h2 class="text-center mb-4">Browse by Category</h2>
+              <p class="text-center text-muted">Explore our diverse collection of professional stock images</p>
+          <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+            <button class="btn btn-outline-primary" onclick="filterByCategory('all')">All</button>
+            <button class="btn btn-outline-success" onclick="filterByCategory('nature')">Nature</button>
+            <button class="btn btn-outline-info" onclick="filterByCategory('travel')">Travel</button>
+            <button class="btn btn-outline-warning" onclick="filterByCategory('technology')">Technology</button>
+            <button class="btn btn-outline-danger" onclick="filterByCategory('art')">Art</button>
+            <button class="btn btn-outline-secondary" onclick="filterByCategory('architecture')">Architecture</button>
+            <button class="btn btn-outline-dark" onclick="filterByCategory('animals')">Animals</button>
           </div>
         </div>
       </div>
-      <div class="col">
-        <div class="card">
-          <img src="img/5.jpg" class="sarita-img" alt="sarita">
-          <div class="card-body">
-            <h5 class="card-title">Travel</h5>
-            <p class="card-text"></p>
+
+      <div class="row row-cols-1 row-cols-md-3 g-4" id="categoryGrid">
+        <div class="col" data-category="nature">
+          <div class="card h-100">
+            <img src="img/4.jpg" class="Saritamanagementimg" alt="Nature photography">
+            <div class="card-body">
+              <h5 class="card-title">Nature</h5>
+              <p class="card-text">Beautiful natural landscapes and wildlife photography</p>
+              <span class="badge bg-success">156 images</span>
+            </div>
+            <div class="card-footer">
+              <a href="vendor_gallery.html?category=nature" class="btn btn-primary btn-sm">Browse Nature</a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img src="img/6.jpg" class="sarita-img" alt="sarita">
-          <div class="card-body">
-            <h5 class="card-title">Technology</h5>
-            <p class="card-text"></p>
+        <div class="col" data-category="travel">
+          <div class="card h-100">
+            <img src="img/5.jpg" class="Saritamanagementimg" alt="Travel photography">
+            <div class="card-body">
+              <h5 class="card-title">Travel</h5>
+              <p class="card-text">Stunning destinations and travel experiences</p>
+              <span class="badge bg-info">203 images</span>
+            </div>
+            <div class="card-footer">
+              <a href="vendor_gallery.html?category=travel" class="btn btn-primary btn-sm">Browse Travel</a>
+            </div>
+          </div>
+        </div>
+        <div class="col" data-category="technology">
+          <div class="card h-100">
+            <img src="img/6.jpg" class="Saritamanagementimg" alt="Technology images">
+            <div class="card-body">
+              <h5 class="card-title">Technology</h5>
+              <p class="card-text">Modern tech, gadgets, and digital concepts</p>
+              <span class="badge bg-warning">89 images</span>
+            </div>
+            <div class="card-footer">
+              <a href="vendor_gallery.html?category=technology" class="btn btn-primary btn-sm">Browse Technology</a>
+            </div>
+          </div>
+        </div>
+        <div class="col" data-category="art">
+          <div class="card h-100">
+            <img src="img/art.jpg" class="Saritamanagementimg" alt="Art and creative">
+            <div class="card-body">
+              <h5 class="card-title">Art & Creative</h5>
+              <p class="card-text">Artistic creations and creative expressions</p>
+              <span class="badge bg-danger">127 images</span>
+            </div>
+            <div class="card-footer">
+              <a href="vendor_gallery.html?category=art" class="btn btn-primary btn-sm">Browse Art</a>
+            </div>
+          </div>
+        </div>
+        <div class="col" data-category="architecture">
+          <div class="card h-100">
+            <img src="img/9 (10).jpg" class="Saritamanagementimg" alt="Architecture">
+            <div class="card-body">
+              <h5 class="card-title">Architecture</h5>
+              <p class="card-text">Buildings, structures, and urban landscapes</p>
+              <span class="badge bg-secondary">94 images</span>
+            </div>
+            <div class="card-footer">
+              <a href="vendor_gallery.html?category=architecture" class="btn btn-primary btn-sm">Browse Architecture</a>
+            </div>
+          </div>
+        </div>
+        <div class="col" data-category="animals">
+          <div class="card h-100">
+            <img src="img/9 (9).jpg" class="Saritamanagementimg" alt="Animals and wildlife">
+            <div class="card-body">
+              <h5 class="card-title">Animals & Wildlife</h5>
+              <p class="card-text">Wildlife, pets, and animal photography</p>
+              <span class="badge bg-dark">78 images</span>
+            </div>
+            <div class="card-footer">
+              <a href="vendor_gallery.html?category=animals" class="btn btn-primary btn-sm">Browse Animals</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+      <!-- How It Works Section -->
+      <section class="how-it-works py-5">
+        <div class="container">
+          <h2 class="text-center mb-5">How Sarita Management Works</h2>
+          <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+              <div class="text-center">
+                <div class="feature-icon mx-auto mb-3">
+                  <i class="fas fa-home fa-2x text-primary"></i>
+                </div>
+                <h5>Home</h5>
+                <p class="text-muted">Discover featured images, browse categories, and get an overview of our platform.</p>
+                <a href="index.html" class="btn btn-outline-primary btn-sm">Visit Home</a>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="text-center">
+                <div class="feature-icon mx-auto mb-3">
+                  <i class="fas fa-images fa-2x text-success"></i>
+                </div>
+                <h5>Full Gallery</h5>
+                <p class="text-muted">Browse all 24+ images with advanced filtering, search, and pagination features.</p>
+                <a href="vendor_gallery.html" class="btn btn-outline-success btn-sm">Browse Gallery</a>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="text-center">
+                <div class="feature-icon mx-auto mb-3">
+                  <i class="fas fa-th-large fa-2x text-info"></i>
+                </div>
+                <h5>Collections</h5>
+                <p class="text-muted">View curated collections and image catalog with category-based organization.</p>
+                <a href="item_details.html" class="btn btn-outline-info btn-sm">View Collections</a>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="text-center">
+                <div class="feature-icon mx-auto mb-3">
+                  <i class="fas fa-user-cog fa-2x text-warning"></i>
+                </div>
+                <h5>Admin Panel</h5>
+                <p class="text-muted">Manage vendors, approve applications, and perform CRUD operations (Admin only).</p>
+                <a href="vendor_management.html" class="btn btn-outline-warning btn-sm">Admin Panel</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    
     <footer class="myfooter border-top py-4">
       <div class="container d-flex flex-wrap  align-items-center justify-content-between">
-        <p class="col-md-4 mb-0">2025 Sarita Management</p>
+        <p class="col-md-4 mb-0">© 2025 Sarita Management Photography</p>
 
 
         <ul class="nav col-md-4 justify-content-end">
@@ -106,6 +315,48 @@
         
       </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function filterByCategory(category) {
+        const cards = document.querySelectorAll('#categoryGrid .col');
+        
+        cards.forEach(card => {
+          if (category === 'all' || card.getAttribute('data-category') === category) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+        
+        // Update button states
+        document.querySelectorAll('button[onclick^="filterByCategory"]').forEach(btn => {
+          btn.classList.remove('btn-primary', 'btn-success', 'btn-info', 'btn-warning', 'btn-danger', 'btn-secondary', 'btn-dark');
+          const originalClasses = btn.className.split(' ').filter(cls => cls.startsWith('btn-outline-'));
+          btn.className = 'btn ' + originalClasses.join(' ');
+        });
+        
+        // Highlight active filter
+        event.target.classList.remove('btn-outline-primary', 'btn-outline-success', 'btn-outline-info', 'btn-outline-warning', 'btn-outline-danger', 'btn-outline-secondary', 'btn-outline-dark');
+        event.target.classList.add('btn-primary');
+      }
+      
+      // Enhanced search functionality
+      document.querySelector('.form-control[placeholder="Search"]').addEventListener('input', function(e) {
+        const searchTerm = e.target.value.toLowerCase();
+        const cards = document.querySelectorAll('#categoryGrid .col');
+        
+        cards.forEach(card => {
+          const title = card.querySelector('.card-title').textContent.toLowerCase();
+          const text = card.querySelector('.card-text').textContent.toLowerCase();
+          
+          if (title.includes(searchTerm) || text.includes(searchTerm)) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    </script>
   </body>
 </html>
 

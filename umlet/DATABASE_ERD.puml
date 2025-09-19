@@ -1,0 +1,298 @@
+@startuml Sarita Management_Management_ERD
+!theme vibrant
+title **Sarita Management MANAGEMENT - Stock Image Purchase Platform**\nEntity Relationship Diagram (ERD)
+
+' Color definitions
+!define PRIMARY_COLOR #667eea
+!define SECONDARY_COLOR #764ba2
+!define ACCENT_COLOR #f093fb
+!define SUCCESS_COLOR #4facfe
+!define WARNING_COLOR #ffeaa7
+!define DANGER_COLOR #fd79a8
+
+' Entity styling
+skinparam class {
+    BackgroundColor WHITE
+    BorderColor PRIMARY_COLOR
+    BorderThickness 2
+    HeaderBackgroundColor PRIMARY_COLOR
+    HeaderFontColor WHITE
+    AttributeFontColor #2d3436
+    FontName Arial
+    FontSize 12
+}
+
+skinparam note {
+    BackgroundColor #f8f9fa
+    BorderColor #dee2e6
+    FontSize 10
+}
+
+' USERS Entity
+entity "🔐 USERS" as users {
+    ==Primary Key==
+    **user_id** : INT <<PK>>
+    --
+    ==Personal Information==
+    **first_name** : VARCHAR(50) <<NOT NULL>>
+    **last_name** : VARCHAR(50) <<NOT NULL>>
+    **email** : VARCHAR(100) <<UNIQUE, NOT NULL>>
+    **password_hash** : VARCHAR(255) <<NOT NULL>>
+    **phone** : VARCHAR(20)
+    --
+    ==Address Information==
+    **address** : VARCHAR(255)
+    **address2** : VARCHAR(255)
+    **city** : VARCHAR(50)
+    **state** : VARCHAR(50)
+    **zip_code** : VARCHAR(10)
+    --
+    ==System Fields==
+    **user_type** : ENUM('customer', 'admin') <<DEFAULT 'customer'>>
+    **registration_date** : TIMESTAMP <<DEFAULT CURRENT_TIMESTAMP>>
+    **last_login** : TIMESTAMP
+    **is_active** : BOOLEAN <<DEFAULT TRUE>>
+}
+
+' VENDORS Entity
+entity "🎨 VENDORS" as vendors {
+    ==Primary Key==
+    **vendor_id** : INT <<PK>>
+    --
+    ==Business Information==
+    **vendor_name** : VARCHAR(100) <<NOT NULL>>
+    **email** : VARCHAR(100) <<UNIQUE, NOT NULL>>
+    **phone** : VARCHAR(20)
+    **portfolio_description** : TEXT
+    **website_url** : VARCHAR(255)
+    **social_media_links** : JSON
+    --
+    ==Financial Information==
+    **bank_account_details** : VARCHAR(255)
+    **commission_rate** : DECIMAL(5,2) <<DEFAULT 15.00>>
+    **total_sales** : DECIMAL(10,2) <<DEFAULT 0.00>>
+    --
+    ==Status & Metrics==
+    **status** : ENUM('pending', 'approved', 'rejected', 'suspended') <<DEFAULT 'pending'>>
+    **application_date** : TIMESTAMP <<DEFAULT CURRENT_TIMESTAMP>>
+    **approval_date** : TIMESTAMP
+    **rating** : DECIMAL(3,2) <<DEFAULT 0.00>>
+    **is_active** : BOOLEAN <<DEFAULT TRUE>>
+}
+
+' CATEGORIES Entity
+entity "📂 CATEGORIES" as categories {
+    ==Primary Key==
+    **category_id** : INT <<PK>>
+    --
+    ==Category Information==
+    **category_name** : VARCHAR(50) <<UNIQUE, NOT NULL>>
+    **description** : TEXT
+    **parent_category_id** : INT <<FK>>
+    --
+    ==System Fields==
+    **is_active** : BOOLEAN <<DEFAULT TRUE>>
+    **created_date** : TIMESTAMP <<DEFAULT CURRENT_TIMESTAMP>>
+}
+
+' IMAGES Entity  
+entity "🖼️ IMAGES" as images {
+    ==Primary Key==
+    **image_id** : INT <<PK>>
+    --
+    ==Foreign Keys==
+    **vendor_id** : INT <<FK, NOT NULL>>
+    --
+    ==Image Information==
+    **title** : VARCHAR(100) <<NOT NULL>>
+    **description** : TEXT
+    **file_path** : VARCHAR(255) <<NOT NULL>>
+    **thumbnail_path** : VARCHAR(255)
+    **tags** : VARCHAR(500)
+    --
+    ==Technical Details==
+    **file_size_kb** : INT
+    **image_width** : INT
+    **image_height** : INT
+    **file_format** : VARCHAR(10)
+    --
+    ==Pricing & Licensing==
+    **original_price** : DECIMAL(8,2) <<NOT NULL>>
+    **current_price** : DECIMAL(8,2) <<NOT NULL>>
+    **discount_percentage** : DECIMAL(5,2) <<DEFAULT 0.00>>
+    **license_type** : ENUM('standard', 'extended', 'exclusive') <<DEFAULT 'standard'>>
+    --
+    ==Analytics & Status==
+    **download_count** : INT <<DEFAULT 0>>
+    **view_count** : INT <<DEFAULT 0>>
+    **rating** : DECIMAL(3,2) <<DEFAULT 0.00>>
+    **status** : ENUM('pending', 'approved', 'rejected') <<DEFAULT 'pending'>>
+    **upload_date** : TIMESTAMP <<DEFAULT CURRENT_TIMESTAMP>>
+    **approval_date** : TIMESTAMP
+    **is_featured** : BOOLEAN <<DEFAULT FALSE>>
+    **is_active** : BOOLEAN <<DEFAULT TRUE>>
+}
+
+' IMAGE_CATEGORIES Junction Entity
+entity "🔗 IMAGE_CATEGORIES" as image_categories {
+    ==Composite Primary Key==
+    **image_id** : INT <<PK, FK>>
+    **category_id** : INT <<PK, FK>>
+}
+
+' CART_ITEMS Entity
+entity "🛒 CART_ITEMS" as cart_items {
+    ==Primary Key==
+    **cart_item_id** : INT <<PK>>
+    --
+    ==Foreign Keys==
+    **user_id** : INT <<FK, NOT NULL>>
+    **image_id** : INT <<FK, NOT NULL>>
+    --
+    ==Cart Information==
+    **license_type** : ENUM('standard', 'extended', 'exclusive') <<DEFAULT 'standard'>>
+    **price** : DECIMAL(8,2) <<NOT NULL>>
+    **added_date** : TIMESTAMP <<DEFAULT CURRENT_TIMESTAMP>>
+}
+
+' PURCHASES Entity
+entity "💳 PURCHASES" as purchases {
+    ==Primary Key==
+    **purchase_id** : INT <<PK>>
+    --
+    ==Foreign Keys==
+    **user_id** : INT <<FK, NOT NULL>>
+    --
+    ==Transaction Information==
+    **total_amount** : DECIMAL(10,2) <<NOT NULL>>
+    **payment_method** : ENUM('credit_card', 'debit_card', 'paypal', 'bank_transfer') <<NOT NULL>>
+    **payment_status** : ENUM('pending', 'completed', 'failed', 'refunded') <<DEFAULT 'pending'>>
+    **transaction_id** : VARCHAR(100)
+    --
+    ==Billing Information==
+    **billing_address** : JSON
+    --
+    ==Timestamps==
+    **purchase_date** : TIMESTAMP <<DEFAULT CURRENT_TIMESTAMP>>
+    **completion_date** : TIMESTAMP
+    --
+    ==Additional Information==
+    **notes** : TEXT
+}
+
+' PURCHASE_ITEMS Entity
+entity "🧾 PURCHASE_ITEMS" as purchase_items {
+    ==Primary Key==
+    **purchase_item_id** : INT <<PK>>
+    --
+    ==Foreign Keys==
+    **purchase_id** : INT <<FK, NOT NULL>>
+    **image_id** : INT <<FK, NOT NULL>>
+    **vendor_id** : INT <<FK, NOT NULL>>
+    --
+    ==Item Information==
+    **license_type** : ENUM('standard', 'extended', 'exclusive') <<NOT NULL>>
+    **item_price** : DECIMAL(8,2) <<NOT NULL>>
+    **vendor_commission** : DECIMAL(8,2) <<NOT NULL>>
+    --
+    ==Download Information==
+    **download_url** : VARCHAR(255)
+    **download_expires** : TIMESTAMP
+    **download_count** : INT <<DEFAULT 0>>
+    **max_downloads** : INT <<DEFAULT 10>>
+}
+
+' Relationships with cardinalities and labels
+users ||--o{ cart_items : "has cart items"
+users ||--o{ purchases : "makes purchases"
+
+vendors ||--o{ images : "uploads"
+vendors ||--o{ purchase_items : "earns from"
+
+categories ||--o{ categories : "parent/child"
+categories ||--o{ image_categories : "categorizes"
+
+images ||--o{ image_categories : "belongs to"
+images ||--o{ cart_items : "added to cart"
+images ||--o{ purchase_items : "sold as"
+
+purchases ||--o{ purchase_items : "contains"
+
+cart_items }o--|| images : "references"
+image_categories }o--|| images : "categorizes"
+image_categories }o--|| categories : "uses"
+
+' Notes for business rules
+note right of users : **Business Rules:**\n• Customer and Admin types\n• Email must be unique\n• Registration tracking\n• Activity status management
+
+note right of vendors : **Business Rules:**\n• Application approval workflow\n• Commission-based revenue (15%)\n• Performance tracking\n• Multi-status management
+
+note right of images : **Business Rules:**\n• Approval required before sale\n• Multiple pricing strategies\n• Download & view analytics\n• Multiple license types
+
+note right of purchases : **Business Rules:**\n• Multi-step payment process\n• Multiple payment methods\n• Complete audit trail\n• Refund capabilities
+
+note bottom of image_categories : **Many-to-Many Relationship:**\nImages can belong to multiple categories\nCategories can contain multiple images
+
+' Legend
+note as legend
+    **LEGEND:**
+    🔐 User Management
+    🎨 Content Creators  
+    🖼️ Product Catalog
+    🛒 Shopping Experience
+    💳 Transaction Processing
+    📂 Content Organization
+    🔗 Relationship Tables
+    🧾 Transaction Details
+end note
+
+' Database Views (represented as separate entities)
+entity "📊 ACTIVE_IMAGES_VIEW" as active_images_view {
+    **image_id** : INT
+    **title** : VARCHAR(100)
+    **description** : TEXT
+    **file_path** : VARCHAR(255)
+    **current_price** : DECIMAL(8,2)
+    **original_price** : DECIMAL(8,2)
+    **discount_percentage** : DECIMAL(5,2)
+    **download_count** : INT
+    **vendor_name** : VARCHAR(100)
+    **vendor_id** : INT
+    **categories** : TEXT
+}
+
+entity "📈 VENDOR_STATS_VIEW" as vendor_stats_view {
+    **vendor_id** : INT
+    **vendor_name** : VARCHAR(100)
+    **email** : VARCHAR(100)
+    **status** : ENUM
+    **total_images** : INT
+    **total_downloads** : INT
+    **avg_rating** : DECIMAL(3,2)
+    **approved_images** : INT
+}
+
+' View relationships (dotted lines)
+images ..|> active_images_view : "creates view"
+vendors ..|> vendor_stats_view : "creates view"
+categories ..|> active_images_view : "contributes to view"
+
+' Database Indexes (represented as notes)
+note as indexes
+    **KEY INDEXES:**
+    • idx_vendor_id ON images(vendor_id)
+    • idx_status ON images(status)
+    • idx_featured ON images(is_featured)
+    • idx_price ON images(current_price)
+    • idx_images_vendor_status ON images(vendor_id, status)
+    • idx_images_category ON image_categories(category_id)
+    • idx_vendor_status ON vendors(status)
+    • idx_user_email ON users(email)
+    • idx_user_id ON purchases(user_id)
+    • idx_purchase_date ON purchases(purchase_date)
+    • idx_payment_status ON purchases(payment_status)
+    • idx_purchase_id ON purchase_items(purchase_id)
+    • idx_image_id ON purchase_items(image_id)
+end note
+
+@enduml

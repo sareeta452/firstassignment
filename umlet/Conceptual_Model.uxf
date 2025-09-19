@@ -1,0 +1,100 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>70</x><y>131</y><w>200</w><h>120</h></coordinates><panel_attributes>User
+--
+UserID: String (PK)
+FirstName: String
+LastName: String  
+Email: String
+Password: String
+Country: String
+City: String
+RegistrationDate: Date
+MembershipType: String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>370</x><y>131</y><w>200</w><h>140</h></coordinates><panel_attributes>Photographer
+--
+PhotographerID: String (PK)
+UserID: String (FK)
+Specialty: String
+ExperienceLevel: String
+Bio: String
+PortfolioURL: String
+InstagramHandle: String
+PrimaryCamera: String
+FavoriteLens: String
+ApprovalStatus: String
+ApplicationDate: Date</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>670</x><y>131</y><w>200</w><h>160</h></coordinates><panel_attributes>Image
+--
+ImageID: String (PK)
+PhotographerID: String (FK)
+CategoryID: String (FK)
+Title: String
+Description: String
+FilePath: String
+OriginalPrice: Decimal
+CurrentPrice: Decimal
+UploadDate: Date
+DownloadCount: Integer
+Status: String
+Tags: String
+Resolution: String
+FileSize: Integer</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>970</x><y>131</y><w>180</w><h>100</h></coordinates><panel_attributes>Category
+--
+CategoryID: String (PK)
+CategoryName: String
+Description: String
+ImageCount: Integer
+CreatedDate: Date</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>70</x><y>381</y><w>200</w><h>120</h></coordinates><panel_attributes>Order
+--
+OrderID: String (PK)
+UserID: String (FK)
+OrderDate: Date
+TotalAmount: Decimal
+PaymentStatus: String
+PaymentMethod: String
+BillingAddress: String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>370</x><y>381</y><w>200</w><h>100</h></coordinates><panel_attributes>OrderItem
+--
+OrderItemID: String (PK)
+OrderID: String (FK)
+ImageID: String (FK)
+PurchasePrice: Decimal
+DownloadLink: String
+ExpiryDate: Date</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>670</x><y>381</y><w>200</w><h>120</h></coordinates><panel_attributes>Collection
+--
+CollectionID: String (PK)
+CollectionName: String
+Description: String
+CategoryID: String (FK)
+ImageCount: Integer
+MinPrice: Decimal
+CreatedDate: Date</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>970</x><y>381</y><w>180</w><h>80</h></coordinates><panel_attributes>CollectionImage
+--
+CollectionID: String (FK)
+ImageID: String (FK)
+AddedDate: Date</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>260</x><y>171</y><w>130</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..1
+is</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element><element><id>Relation</id><coordinates><x>560</x><y>181</y><w>130</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..*
+uploads</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element><element><id>Relation</id><coordinates><x>860</x><y>171</y><w>130</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..*
+belongs to</panel_attributes><additional_attributes>110;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>150</x><y>241</y><w>60</w><h>160</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..*
+places</panel_attributes><additional_attributes>10;10;10;140</additional_attributes></element><element><id>Relation</id><coordinates><x>260</x><y>421</y><w>130</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=1..*
+contains</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element><element><id>Relation</id><coordinates><x>560</x><y>381</y><w>130</w><h>70</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..1
+references</panel_attributes><additional_attributes>110;10;10;50</additional_attributes></element><element><id>Relation</id><coordinates><x>860</x><y>381</y><w>130</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..*
+belongs to</panel_attributes><additional_attributes>110;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>860</x><y>411</y><w>130</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=0..*
+m2=0..*
+includes</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element><element><id>Relation</id><coordinates><x>750</x><y>281</y><w>90</w><h>120</h></coordinates><panel_attributes>lt=-
+m1=0..*
+m2=0..*
+grouped in</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>UMLNote</id><coordinates><x>370</x><y>51</y><w>300</w><h>50</h></coordinates><panel_attributes>Sarita Management Photography Platform
+Conceptual Data Model
+bg=yellow</panel_attributes><additional_attributes></additional_attributes></element></diagram>

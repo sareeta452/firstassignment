@@ -1,128 +1,621 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Sarita Management</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styles.css"> <!-- My own CSS -->
-</head>
-  <div>
-    <nav class="navbar navbar-expand-sm ">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">Sarita</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="mynavbar">
-            <ul class="navbar-nav me-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="vendor_gallery.html">Gallery</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="vendor_management.html">Manage</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="item_details.html">Images</a>
-              </li>
-            </ul>
-            <form class="d-flex mx-auto">
-              <input class="form-control me-2 sarita-search-box" type="text" placeholder="Search">
-              <button class="btn btn-primary" type="button">Search</button>
-            </form>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gallery - Sarita Management</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">Sarita Management</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mynavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mynavbar">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="vendor_gallery.html">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="join_photographer.html"
+                >Join as Photographer</a
+              >
+            </li>
+          </ul>
+
+          <!-- Search Bar -->
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search images..."
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-primary" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </form>
+
+          <div class="d-flex align-items-center">
+            <a href="checkout.html" class="nav-link position-relative">
+              <img src="img/cartimage.svg" alt="PURCHASES" class="cart-image" />
+            </a>
           </div>
-          <a href="#" class="nav-link">
-            <img src="img/signimage.svg" alt="CART" class="cart-image">
-          </a>
-          <!-- checkout icon -->
-          <a href="checkout.html" class="nav-link">
-            <img src="img/cartimage.svg" alt="CART" class="cart-image">
-          </a>
         </div>
+      </div>
+    </nav>
+
+    <div class="container mt-4">
+      <h1 class="Saritamanagementgallery">Image Gallery</h1>
+
+      <!-- Filter Container -->
+      <div class="filter-container">
+        <div
+          class="d-flex flex-wrap justify-content-between align-items-center"
+        >
+          <div class="d-flex flex-wrap gap-2 mb-2">
+            <button
+              class="btn btn-outline-primary btn-sm active"
+              onclick="filterByCategory('all')"
+              data-category="all"
+            >
+              All
+            </button>
+            <button
+              class="btn btn-outline-primary btn-sm"
+              onclick="filterByCategory('nature')"
+              data-category="nature"
+            >
+              Nature
+            </button>
+            <button
+              class="btn btn-outline-primary btn-sm"
+              onclick="filterByCategory('travel')"
+              data-category="travel"
+            >
+              Travel
+            </button>
+            <button
+              class="btn btn-outline-primary btn-sm"
+              onclick="filterByCategory('architecture')"
+              data-category="architecture"
+            >
+              Architecture
+            </button>
+            <button
+              class="btn btn-outline-primary btn-sm"
+              onclick="filterByCategory('art')"
+              data-category="art"
+            >
+              Art
+            </button>
+            <button
+              class="btn btn-outline-primary btn-sm"
+              onclick="filterByCategory('technology')"
+              data-category="technology"
+            >
+              Technology
+            </button>
+            <button
+              class="btn btn-outline-primary btn-sm"
+              onclick="filterByCategory('animals')"
+              data-category="animals"
+            >
+              Animals
+            </button>
+          </div>
+          <div class="d-flex align-items-center">
+            <label for="itemsPerPage" class="form-label me-2 mb-0"
+              >Items per page:</label
+            >
+            <select
+              class="form-select form-select-sm"
+              id="itemsPerPage"
+              onchange="changeItemsPerPage()"
+              style="width: auto"
+            >
+              <option value="6">6</option>
+              <option value="12" selected>12</option>
+              <option value="24">24</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="row g-4" id="galleryGrid">
+        <!-- Architecture -->
+        <div class="col-lg-3 col-md-4 col-sm-6" data-category="architecture">
+          <div class="card h-100 featured-card">
+            <img
+              src="img/9 (10).jpg"
+              class="card-img-top"
+              alt="Sydney Opera House"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Sydney Opera House</h5>
+              <p class="card-text text-muted small">by Robert Johnson</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <span class="price-original">$4.99</span>
+                  <span class="price-current">$2.99</span>
+                </div>
+                <small class="text-muted">1,245 downloads</small>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="d-grid gap-2">
+                <a href="checkout.html" class="btn btn-primary btn-sm">
+                  <i class="fas fa-shopping-cart me-1"></i>Add to Cart
+                </a>
+                <a
+                  href="image.details.html?id=1"
+                  class="btn btn-outline-secondary btn-sm"
+                >
+                  <i class="fas fa-eye me-1"></i>View Details
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Travel -->
+        <div class="col-lg-3 col-md-4 col-sm-6" data-category="travel">
+          <div class="card h-100 featured-card">
+            <img
+              src="img/9 (1).jpg"
+              class="card-img-top"
+              alt="Gold Coast Skyline"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Gold Coast Skyline</h5>
+              <p class="card-text text-muted small">by Shyam Sharma</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <span class="price-original">$2.99</span>
+                  <span class="price-current">$1.99</span>
+                </div>
+                <small class="text-muted">892 downloads</small>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="d-grid gap-2">
+                <a href="checkout.html" class="btn btn-primary btn-sm">
+                  <i class="fas fa-shopping-cart me-1"></i>Add to Cart
+                </a>
+                <a
+                  href="image.details.html?id=2"
+                  class="btn btn-outline-secondary btn-sm"
+                >
+                  <i class="fas fa-eye me-1"></i>View Details
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nature -->
+        <div class="col-lg-3 col-md-4 col-sm-6" data-category="nature">
+          <div class="card h-100 featured-card">
+            <img
+              src="img/nature.jpg"
+              class="card-img-top"
+              alt="Natural Landscape"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Natural Landscape</h5>
+              <p class="card-text text-muted small">by Shyam Sharma</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <span class="price-original">$6.99</span>
+                  <span class="price-current">$4.99</span>
+                </div>
+                <small class="text-muted">2,156 downloads</small>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="d-grid gap-2">
+                <a href="checkout.html" class="btn btn-primary btn-sm">
+                  <i class="fas fa-shopping-cart me-1"></i>Add to Cart
+                </a>
+                <a
+                  href="image.details.html?id=3"
+                  class="btn btn-outline-secondary btn-sm"
+                >
+                  <i class="fas fa-eye me-1"></i>View Details
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Architecture -->
+        <div class="col-lg-3 col-md-4 col-sm-6" data-category="architecture">
+          <div class="card h-100 featured-card">
+            <img
+              src="img/9 (2).jpg"
+              class="card-img-top"
+              alt="Harbour Bridge"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Harbour Bridge</h5>
+              <p class="card-text text-muted small">by Robert Johnson</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <span class="price-original">$3.99</span>
+                  <span class="price-current">$2.49</span>
+                </div>
+                <small class="text-muted">678 downloads</small>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="d-grid gap-2">
+                <a href="checkout.html" class="btn btn-primary btn-sm">
+                  <i class="fas fa-shopping-cart me-1"></i>Add to Cart
+                </a>
+                <a
+                  href="image.details.html?id=4"
+                  class="btn btn-outline-secondary btn-sm"
+                >
+                  <i class="fas fa-eye me-1"></i>View Details
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Travel -->
+        <div class="col-lg-3 col-md-4 col-sm-6" data-category="travel">
+          <div class="card h-100 featured-card">
+            <img src="img/9 (3).jpg" class="card-img-top" alt="City Night" />
+            <div class="card-body">
+              <h5 class="card-title">City Night</h5>
+              <p class="card-text text-muted small">by Maria Garcia</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <span class="price-original">$4.99</span>
+                  <span class="price-current">$3.99</span>
+                </div>
+                <small class="text-muted">1,423 downloads</small>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="d-grid gap-2">
+                <a href="checkout.html" class="btn btn-primary btn-sm">
+                  <i class="fas fa-shopping-cart me-1"></i>Add to Cart
+                </a>
+                <a
+                  href="image.details.html?id=5"
+                  class="btn btn-outline-secondary btn-sm"
+                >
+                  <i class="fas fa-eye me-1"></i>View Details
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nature -->
+        <div class="col-lg-3 col-md-4 col-sm-6" data-category="nature">
+          <div class="card h-100 featured-card">
+            <img src="img/9 (4).jpg" class="card-img-top" alt="Forest Path" />
+            <div class="card-body">
+              <h5 class="card-title">Forest Path</h5>
+              <p class="card-text text-muted small">by David Chen</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <span class="price-original">$3.99</span>
+                  <span class="price-current">$2.99</span>
+                </div>
+                <small class="text-muted">934 downloads</small>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="d-grid gap-2">
+                <a href="checkout.html" class="btn btn-primary btn-sm">
+                  <i class="fas fa-shopping-cart me-1"></i>Add to Cart
+                </a>
+                <a
+                  href="image.details.html?id=6"
+                  class="btn btn-outline-secondary btn-sm"
+                >
+                  <i class="fas fa-eye me-1"></i>View Details
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Architecture -->
+        <div class="col-lg-3 col-md-4 col-sm-6" data-category="architecture">
+          <div class="card h-100 featured-card">
+            <img
+              src="img/9 (6).jpg"
+              class="card-img-top"
+              alt="Melbourne Skyline"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Melbourne Skyline</h5>
+              <p class="card-text text-muted small">by Sarah Wilson</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <span class="price-original">$5.99</span>
+                  <span class="price-current">$3.99</span>
+                </div>
+                <small class="text-muted">756 downloads</small>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="d-grid gap-2">
+                <a href="checkout.html" class="btn btn-primary btn-sm">
+                  <i class="fas fa-shopping-cart me-1"></i>Add to Cart
+                </a>
+                <a
+                  href="image.details.html?id=7"
+                  class="btn btn-outline-secondary btn-sm"
+                >
+                  <i class="fas fa-eye me-1"></i>View Details
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Travel -->
+        <div class="col-lg-3 col-md-4 col-sm-6" data-category="travel">
+          <div class="card h-100 featured-card">
+            <img src="img/9 (7).jpg" class="card-img-top" alt="Urban Street" />
+            <div class="card-body">
+              <h5 class="card-title">Urban Street</h5>
+              <p class="card-text text-muted small">by Alex Thompson</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <span class="price-original">$2.99</span>
+                  <span class="price-current">$1.99</span>
+                </div>
+                <small class="text-muted">1,087 downloads</small>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="d-grid gap-2">
+                <a href="checkout.html" class="btn btn-primary btn-sm">
+                  <i class="fas fa-shopping-cart me-1"></i>Add to Cart
+                </a>
+                <a
+                  href="image.details.html?id=8"
+                  class="btn btn-outline-secondary btn-sm"
+                >
+                  <i class="fas fa-eye me-1"></i>View Details
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Art -->
+        <div class="col-lg-3 col-md-4 col-sm-6" data-category="art">
+          <div class="card h-100 featured-card">
+            <img src="img/art.jpg" class="card-img-top" alt="Creative Art" />
+            <div class="card-body">
+              <h5 class="card-title">Creative Art</h5>
+              <p class="card-text text-muted small">by Lisa Park</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <span class="price-original">$6.99</span>
+                  <span class="price-current">$4.99</span>
+                </div>
+                <small class="text-muted">1,334 downloads</small>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="d-grid gap-2">
+                <a href="checkout.html" class="btn btn-primary btn-sm">
+                  <i class="fas fa-shopping-cart me-1"></i>Add to Cart
+                </a>
+                <a
+                  href="image.details.html?id=9"
+                  class="btn btn-outline-secondary btn-sm"
+                >
+                  <i class="fas fa-eye me-1"></i>View Details
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Animals -->
+        <div class="col-lg-3 col-md-4 col-sm-6" data-category="animals">
+          <div class="card h-100 featured-card">
+            <img src="img/9 (9).jpg" class="card-img-top" alt="Wildlife Bird" />
+            <div class="card-body">
+              <h5 class="card-title">Wildlife Bird</h5>
+              <p class="card-text text-muted small">by Mike Rodriguez</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <span class="price-original">$4.99</span>
+                  <span class="price-current">$3.49</span>
+                </div>
+                <small class="text-muted">567 downloads</small>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="d-grid gap-2">
+                <a href="checkout.html" class="btn btn-primary btn-sm">
+                  <i class="fas fa-shopping-cart me-1"></i>Add to Cart
+                </a>
+                <a
+                  href="image.details.html?id=10"
+                  class="btn btn-outline-secondary btn-sm"
+                >
+                  <i class="fas fa-eye me-1"></i>View Details
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Technology -->
+        <div class="col-lg-3 col-md-4 col-sm-6" data-category="technology">
+          <div class="card h-100 featured-card">
+            <img
+              src="img/technology.jpg"
+              class="card-img-top"
+              alt="Tech Innovation"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Tech Innovation</h5>
+              <p class="card-text text-muted small">by James Lee</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <span class="price-original">$5.99</span>
+                  <span class="price-current">$4.49</span>
+                </div>
+                <small class="text-muted">823 downloads</small>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="d-grid gap-2">
+               <a href="checkout.html" class="btn btn-primary btn-sm">
+                  <i class="fas fa-shopping-cart me-1"></i>Add to Cart
+                </a>
+                <a
+                  href="image.details.html?id=11"
+                  class="btn btn-outline-secondary btn-sm"
+                >
+                  <i class="fas fa-eye me-1"></i>View Details
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nature -->
+        <div class="col-lg-3 col-md-4 col-sm-6" data-category="nature">
+          <div class="card h-100 featured-card">
+            <img src="img/9 (11).jpg" class="card-img-top" alt="Ocean View" />
+            <div class="card-body">
+              <h5 class="card-title">Ocean View</h5>
+              <p class="card-text text-muted small">by Emma Davis</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <span class="price-original">$4.99</span>
+                  <span class="price-current">$3.99</span>
+                </div>
+                <small class="text-muted">1,567 downloads</small>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="d-grid gap-2">
+                <a href="checkout.html" class="btn btn-primary btn-sm">
+                  <i class="fas fa-shopping-cart me-1"></i>Add to Cart
+                </a>
+                <a
+                  href="image.details.html?id=12"
+                  class="btn btn-outline-secondary btn-sm"
+                >
+                  <i class="fas fa-eye me-1"></i>View Details
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Static Pagination -->
+      <nav aria-label="Gallery pagination" class="mt-4">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled">
+            <span class="page-link">Previous</span>
+          </li>
+          <li class="page-item active">
+            <span class="page-link">1</span>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">2</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">3</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
       </nav>
-<!-- Main gallery  -->
+    </div>
 
-<h1 class="sarita-gallery">Sarita Gallery page</h1>
+    <footer class="myfooter">
+      <div class="container">
+        <div
+          class="d-flex flex-wrap align-items-center justify-content-between"
+        >
+          <p class="mb-0">© 2025 Sarita Management Photography</p>
+          <ul class="nav">
+            <li class="nav-item">
+              <a href="index.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="vendor_gallery.html" class="nav-link">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a href="checkout.html" class="nav-link">Purchases</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
 
-<div class="card-group">
-  <div class="card">
-    <img src="img/1.jpg" class="sarita-img" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Rara</h5>
-      <p class="card-text">Highest altitude lake.</p>
-    </div>
-    
-  </div>
-  <div class="card">
-    <img src="img/2.jpg" class="sarita-img" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Himalaya</h5>
-      <p class="card-text">Nepals Mountains.</p>
-    </div>
-    
-  </div>
-  <div class="card">
-    <img src="img/3.jpg" class="sarita-img" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Chitwan</h5>
-      <p class="card-text">Chitwan National Park.</p>
-    </div>
-    
-  </div>
-  
-</div>
-<div class="card-group">
-  <div class="card">
-    <img src="img/4.jpg" class="sarita-img" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Kukur ra Gamala</h5>
-      <p class="card-text">Kukur ko paint gamala sanga</p>
-    </div>
-    
-  </div>
-  <div class="card">
-    <img src="img/5.jpg" class="sarita-img" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Himal Paint</h5>
-      <p class="card-text">Himal bata aayeko paani .</p>
-    </div>
-    
-  </div>
-  <div class="card">
-    <img src="img/6.jpg" class="sarita-img" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Bacha Cycle</h5>
-      <p class="card-text">This is Bacha Cycle</p>
-    </div>
-    
-  </div>
-  
-</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Simple static category filtering
+      function filterByCategory(category) {
+        // Update filter buttons
+        document.querySelectorAll("[data-category]").forEach((btn) => {
+          btn.classList.remove("active", "btn-primary");
+          btn.classList.add("btn-outline-primary");
+        });
+        document
+          .querySelector(`[data-category="${category}"]`)
+          .classList.add("active", "btn-primary");
+        document
+          .querySelector(`[data-category="${category}"]`)
+          .classList.remove("btn-outline-primary");
 
-<!-- Pagination -->
-<ul class="pagination justify-content-center sarita-pagination" style="margin:20px 0">
-  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-  <li class="page-item"><a class="page-link" href="#">1</a></li>
-  <li class="page-item"><a class="page-link" href="#">2</a></li>
-  <li class="page-item"><a class="page-link" href="#">3</a></li>
-  <li class="page-item"><a class="page-link" href="#">Next</a></li>
-</ul>
+        // Show/hide items based on category
+        const items = document.querySelectorAll("#galleryGrid > div");
+        items.forEach((item) => {
+          if (
+            category === "all" ||
+            item.getAttribute("data-category") === category
+          ) {
+            item.style.display = "";
+          } else {
+            item.style.display = "none";
+          }
+        });
+      }
 
-<!-- my footer -->
-<footer class="myfooter border-top py-4">
-  <div class="container d-flex flex-wrap  align-items-center justify-content-between">
-    <p class="col-md-4 mb-0">2025 Sarita Management</p>
-
-    <ul class="nav col-md-4 justify-content-end">
-      <li class="nav-item"><a href="index.html" class="nav-link px-2">Home</a></li>
-      <li class="nav-item"><a href="vendor_gallery.html" class="nav-link px-2">Gallery</a></li>
-      <li class="nav-item"><a href="checkout.html" class="nav-link px-2">Checkout</a></li>
-    </ul>
-    
-  </div>
-</footer>
-</body>
+      // Static add to cart function
+      function addToCart(imageId) {
+        alert(
+          'Image added to cart! Visit "My Purchases" to see your order history.'
+        );
+      }
+    </script>
+  </body>
 </html>
